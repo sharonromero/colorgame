@@ -46,12 +46,14 @@ resetButton.addEventListener("click", function(){
 	pickedColor = pickColor();
 	// Change colorDisplay to match picked color
 	colorDisplay.textContent = pickedColor;
+	this.textContent = "New Colors"; // Makes New Colors button appear again after game is finished and Play Again button is clicked.
+	messageDisplay.textContent = ""; // Removes the word Correct when the game is over and the Play Again button is clicked.
 	// Change colors of squares
 	for(var i = 0; i < squares.length; i++){
 		// Adds initial colors to squares
 		squares[i].style.backgroundColor = colors[i];
 	}
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 })
 
 colorDisplay.textContent = pickedColor; // This displays the goal color in the h1.
