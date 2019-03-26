@@ -10,6 +10,7 @@ var colors = [
 var squares = document.querySelectorAll(".square");
 var pickedColor = colors[3]; // This picks rgb(0, 255, 255) listed above as the goal color (the color that is to be guessed).
 var colorDisplay = document.getElementById("colorDisplay");
+var messageDisplay = document.querySelector("#message");
 
 colorDisplay.textContent = pickedColor; // This displays the goal color in the h1.
 
@@ -24,9 +25,19 @@ for(var i = 0; i < squares.length; i++){
 		var clickedColor = this.style.backgroundColor;
 		// Compares color to pickedColor
 		if (clickedColor === pickedColor){
-			alert("Correct!");
+			messageDisplay.textContent = "Correct!";
+			changeColors(clickedColor);
 		} else {
-			alert("Wrong!");
+			this.style.backgroundColor = "#232323";
+			messageDisplay.textContent = "Try Again"
 		}	
 	});
+}
+
+function changeColors(color){
+	// Loops through all squares
+	for(var i = 0; i < squares.length; i++){
+		// Change each color to match given color
+		squares[i].style.backgroundColor = color;	
+	}
 }
