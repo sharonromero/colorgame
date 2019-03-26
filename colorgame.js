@@ -5,6 +5,22 @@ var pickedColor = pickColor(); // This picks the goal color (the color that is t
 var colorDisplay = document.getElementById("colorDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
+
+resetButton.addEventListener("click", function(){
+	// Generate all new colors
+	colors = generateRandomColors(6);
+	// Pick a new random color from array
+	pickedColor = pickColor();
+	// Change colorDisplay to match picked color
+	colorDisplay.textContent = pickedColor;
+	// Change colors of squares
+	for(var i = 0; i < squares.length; i++){
+		// Adds initial colors to squares
+		squares[i].style.backgroundColor = colors[i];
+	}
+	h1.style.backgroundColor = "#232323";
+})
 
 colorDisplay.textContent = pickedColor; // This displays the goal color in the h1.
 
@@ -13,13 +29,14 @@ for(var i = 0; i < squares.length; i++){
 	// Adds initial colors to squares
 	squares[i].style.backgroundColor = colors[i];
 
-	//Adds click listeners to squares
+	// Adds click listeners to squares
 	squares[i].addEventListener("click", function(){
 		// Grabs color of clicked square
 		var clickedColor = this.style.backgroundColor;
 		// Compares color to pickedColor
 		if (clickedColor === pickedColor){
 			messageDisplay.textContent = "Correct!";
+			resetButton.textContent = "Play Again?";
 			changeColors(clickedColor);
 			h1.style.backgroundColor = clickedColor;
 		} else {
